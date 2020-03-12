@@ -18,7 +18,6 @@ public class LabelController {
     @RequestMapping(value = "/app",method = RequestMethod.GET)
     public List<LabelEntity> getAllLabelsWithApp(@RequestParam(name = "app")String app){
         List labels = labelService.getAllLabelsApp(app);
-        System.out.println("csdsadsad");
         return labels;
     }
 
