@@ -7,8 +7,8 @@ import java.io.Serializable;
 @Table(name = "LABEL")
 public class LabelEntity extends BaseEntity {
 
-    @Column(name="app", nullable = false, unique = true, length = 255)
-    private String app;
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = ApplicationEntity.class)
+    private ApplicationEntity app;
 
     @Column(name="code", nullable = false, unique = true, length = 255)
     private String key;

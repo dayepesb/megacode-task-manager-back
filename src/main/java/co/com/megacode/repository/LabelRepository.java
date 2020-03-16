@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface LabelRepository extends JpaRepository<LabelEntity,Long> {
 
-    @Query("select l from LabelEntity l where l.app=:app")
-    List<LabelEntity> findAllLabelsByApp(@Param("app")String app);
+    @Query("select l from LabelEntity l INNER JOIN ApplicationEntity a ON a.id=:idApp")
+    List<LabelEntity> findAllLabelsByIdApp(@Param("idApp")Long idApp);
 }

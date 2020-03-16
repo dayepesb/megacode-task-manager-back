@@ -1,28 +1,30 @@
 package co.com.megacode.service;
 
+import co.com.megacode.DTO.LabelDTO;
 import co.com.megacode.entity.LabelEntity;
 import co.com.megacode.repository.LabelRepository;
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class LabelService {
+public class LabelService extends BaseService{
 
     @Autowired
     LabelRepository labelRepository;
 
-    public List<LabelEntity> getAllLabelsApp(String app){
+    public List<LabelDTO> getAllLabelsApp(Long idApp){
 
-        if (app==null || app.equals("")){
-            return new LinkedList<>();
+        List<LabelEntity> labels = labelRepository.findAllLabelsByIdApp(idApp);
+
+        List<LabelDTO> dtosList = new ArrayList<>();
+        for (LabelEntity labelEntity: labels) {
+            LabelDTO dto = mapper.map(labelEntity ,LabelDTO.class);
+            dtosList.add(dto);
         }
-
-        List<LabelEntity> labels = labelRepository.findAllLabelsByApp(app);
-        return labels;
+        return dtosList;
     }
 }
