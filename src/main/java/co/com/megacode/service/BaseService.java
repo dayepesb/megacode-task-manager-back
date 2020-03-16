@@ -8,4 +8,5 @@ import java.util.Arrays;
 public class BaseService {
     @Autowired
     DozerBeanMapper mapper;
+
 }

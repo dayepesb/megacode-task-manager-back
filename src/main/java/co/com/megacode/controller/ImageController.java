@@ -1,5 +1,6 @@
 package co.com.megacode.controller;
 
+import co.com.megacode.DTO.ImageDTO;
 import co.com.megacode.entity.ImageEntity;
 import co.com.megacode.service.ImageService;
 import co.com.megacode.util.ParamsName;
@@ -18,7 +19,7 @@ public class ImageController {
     ImageService imageService;
 
     @RequestMapping(value = UrlName.URL_IMAGES_PRINCIPAL_PAGE ,method = {RequestMethod.GET} )
-    public List<ImageEntity> getImagesPrincipalPage(@RequestParam(name = ParamsName.PARAM_ID_APP) Long idApplication){
+    public List<ImageDTO> getImagesPrincipalPage(@RequestParam(name = ParamsName.PARAM_ID_APP) Long idApplication){
         return imageService.getImagePrincipalPageByIdApp(idApplication);
     }
 }

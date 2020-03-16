@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class LabelService extends BaseService{
+public class LabelService extends BaseService {
 
     @Autowired
     LabelRepository labelRepository;
@@ -22,7 +22,8 @@ public class LabelService extends BaseService{
 
         List<LabelDTO> dtosList = new ArrayList<>();
         for (LabelEntity labelEntity: labels) {
-            LabelDTO dto = mapper.map(labelEntity ,LabelDTO.class);
+            LabelDTO dto = new LabelDTO();
+            mapper.map(labelEntity , dto);
             dtosList.add(dto);
         }
         return dtosList;

@@ -19,4 +19,20 @@
             <b>labelEp</b>
         </field>
     </mapping>
+    <mapping>
+        <class-a>co.com.megacode.entity.ImageEntity</class-a>
+        <class-b>co.com.megacode.DTO.ImageDTO</class-b>
+        <field>
+            <a>imageB64</a>
+            <b>imageB64</b>
+        </field>
+        <field>
+            <a>titleImage</a>
+            <b>titleImage</b>
+        </field>
+        <field>
+            <a>commentsImage</a>
+            <b>commentsImage</b>
+        </field>
+    </mapping>
 </mappings>
