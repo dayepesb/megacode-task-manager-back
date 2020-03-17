@@ -12,15 +12,14 @@ public class ImageEntity extends BaseEntity {
     @ManyToOne(targetEntity = ApplicationEntity.class, cascade = CascadeType.ALL, optional = false)
     private ApplicationEntity application;
 
-    @Column(name = "image_b64", unique = false, nullable = false, length = 1000000)
-    private String imageB64;
+    @Column(name = "path", unique = false, nullable = false, length = 1000000)
+    private String path;
 
     @Column(name = "title_imaghe", unique = false, nullable = false)
     private String titleImage;
 
     @Column(name = "comments_image", unique = false, nullable = false)
     private String commentsImage;
-
 
     public TypeImageEntity getTypeImage() {
         return typeImage;
@@ -38,12 +37,12 @@ public class ImageEntity extends BaseEntity {
         this.application = application;
     }
 
-    public String getImageB64() {
-        return imageB64;
+    public String getPath() {
+        return path;
     }
 
-    public void setImageB64(String imageB64) {
-        this.imageB64 = imageB64;
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public String getTitleImage() {

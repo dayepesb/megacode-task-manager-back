@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ImageDTO {
 
-    @JsonProperty(value = JsonPropertiesName.IMAGE_B64, required = true , access = JsonProperty.Access.READ_ONLY)
-    private String imageB64;
+    @JsonProperty(value = JsonPropertiesName.PATH, required = true , access = JsonProperty.Access.READ_ONLY)
+    private String path;
 
     @JsonProperty(value = JsonPropertiesName.TITLE_IMAGE, required = true , access = JsonProperty.Access.READ_ONLY)
     private String titleImage;
@@ -14,12 +14,12 @@ public class ImageDTO {
     @JsonProperty(value = JsonPropertiesName.COMMENTS_IMAGE, required = true , access = JsonProperty.Access.READ_ONLY)
     private String commentsImage;
 
-    public String getImageB64() {
-        return imageB64;
+    public String getPath() {
+        return path;
     }
 
-    public void setImageB64(String imageB64) {
-        this.imageB64 = imageB64;
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public String getTitleImage() {

@@ -23,8 +23,8 @@
         <class-a>co.com.megacode.entity.ImageEntity</class-a>
         <class-b>co.com.megacode.DTO.ImageDTO</class-b>
         <field>
-            <a>imageB64</a>
-            <b>imageB64</b>
+            <a>path</a>
+            <b>path</b>
         </field>
         <field>
             <a>titleImage</a>
