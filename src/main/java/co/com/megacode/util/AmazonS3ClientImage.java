@@ -1,34 +1,32 @@
-package co.com.megacode.service.impl;
-
-import co.com.megacode.service.AmazonS3ClientService;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
-import com.amazonaws.services.s3.model.DeleteObjectRequest;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Component;
+package co.com.megacode.util;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.regions.Region;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
+import com.amazonaws.services.s3.model.PutObjectRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.util.StringTokenizer;
 
 @Component
-public class AmazonS3ClientServiceImpl implements AmazonS3ClientService  {
+public class AmazonS3ClientImage {
+
     private String awsS3AudioBucket;
     private AmazonS3 amazonS3;
-    private static final Logger logger = LoggerFactory.getLogger(AmazonS3ClientServiceImpl.class);
 
     @Autowired
-    public AmazonS3ClientServiceImpl(Region awsRegion, AWSCredentialsProvider awsCredentialsProvider, String awsS3AudioBucket)
+    public AmazonS3ClientImage(Region awsRegion, AWSCredentialsProvider awsCredentialsProvider, String awsS3AudioBucket)
     {
         this.amazonS3 = AmazonS3ClientBuilder.standard()
                 .withCredentials(awsCredentialsProvider)
@@ -37,28 +35,45 @@ public class AmazonS3ClientServiceImpl implements AmazonS3ClientService  {
     }
 
     @Async
-    public void uploadFileToS3Bucket(MultipartFile multipartFile, boolean enablePublicReadAccess)
-    {
+    public String saveImageS3Bucket(MultipartFile multipartFile, boolean enablePublicReadAccess, String path) throws IOException, NoSuchAlgorithmException {
         String fileName = multipartFile.getOriginalFilename();
+        String fileNameMD5 = null;
 
         try {
-            //creating the file in the server (temporarily)
-            File file = new File(fileName);
+            StringTokenizer st = new StringTokenizer(fileName, ".");
+            fileNameMD5 = HashEncrypter.hashMD5(st.nextToken());
+        } catch (NoSuchAlgorithmException e) {
+            throw e;
+        }
+
+        StringBuilder sb = new StringBuilder(path);
+        sb.append(fileNameMD5);
+        sb.append("-");
+        sb.append(fileName);
+        String fullName = sb.toString();
+
+        File file = new File(fileName);
+
+        try {
+
             FileOutputStream fos = new FileOutputStream(file);
             fos.write(multipartFile.getBytes());
             fos.close();
 
-            PutObjectRequest putObjectRequest = new PutObjectRequest(this.awsS3AudioBucket, fileName, file);
+            PutObjectRequest putObjectRequest = new PutObjectRequest(this.awsS3AudioBucket, fullName, file);
 
             if (enablePublicReadAccess) {
                 putObjectRequest.withCannedAcl(CannedAccessControlList.PublicRead);
             }
             this.amazonS3.putObject(putObjectRequest);
-            //removing the file created in the server
-            file.delete();
+
+
         } catch (IOException | AmazonServiceException ex) {
-            logger.error("error [" + ex.getMessage() + "] occurred while uploading [" + fileName + "] ");
+            file.delete();
+            throw ex;
         }
+        file.delete();
+        return fullName;
     }
 
     @Async
@@ -67,7 +82,7 @@ public class AmazonS3ClientServiceImpl implements AmazonS3ClientService  {
         try {
             amazonS3.deleteObject(new DeleteObjectRequest(awsS3AudioBucket, fileName));
         } catch (AmazonServiceException ex) {
-            logger.error("error [" + ex.getMessage() + "] occurred while removing [" + fileName + "] ");
+            throw ex;
         }
     }
 }

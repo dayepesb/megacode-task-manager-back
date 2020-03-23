@@ -1,5 +1,8 @@
 package co.com.megacode.config;
 
+
+import co.com.megacode.util.AmazonS3ClientImage;
+import co.com.megacode.util.ApplicationUtil;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -30,4 +33,10 @@ public class AppConfig {
         dozerBeanMapper.setMappingFiles(list);
         return dozerBeanMapper;
     }
+
+    @Bean(name="co.com.megacode.util.ApplicationUtil")
+    public ApplicationUtil applicationUtil(){
+        return new ApplicationUtil();
+    }
+
 }

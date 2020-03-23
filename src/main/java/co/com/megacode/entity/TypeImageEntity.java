@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class TypeImageEntity extends BaseEntity {
 
     @Column(name = "name_type", unique = true, nullable = false, length = 100)
-    private String nameTyope;
+    private String nameType;
 
     @Column(name = "comments", length = 80, nullable = true, unique = false)
     private String comments;
@@ -23,11 +23,11 @@ public class TypeImageEntity extends BaseEntity {
         this.comments = comments;
     }
 
-    public String getNameTyope() {
-        return nameTyope;
+    public String getNameType() {
+        return nameType;
     }
 
-    public void setNameTyope(String nameTyope) {
-        this.nameTyope = nameTyope;
+    public void setNameType(String nameType) {
+        this.nameType = nameType;
     }
 }

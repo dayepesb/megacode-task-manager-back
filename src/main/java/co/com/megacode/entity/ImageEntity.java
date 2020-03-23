@@ -6,6 +6,10 @@ import javax.persistence.*;
 @Table(name = "IMAGE")
 public class ImageEntity extends BaseEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
     @ManyToOne(targetEntity = TypeImageEntity.class, cascade = CascadeType.ALL, optional = false)
     private TypeImageEntity typeImage;
 

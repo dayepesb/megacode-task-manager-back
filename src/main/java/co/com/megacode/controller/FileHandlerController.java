@@ -1,39 +1,27 @@
 package co.com.megacode.controller;
 
-import co.com.megacode.service.AmazonS3ClientService;
+import co.com.megacode.DTO.ImageDTO;
+import co.com.megacode.exception.MegacodeException;
+import co.com.megacode.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashMap;
-import java.util.Map;
+import static co.com.megacode.util.ParamsName.*;
+import static co.com.megacode.util.UrlName.URL_FILES;
+import static co.com.megacode.util.UrlName.URL_SAVE_IMG_GENERAL;
 
 @RestController
-@RequestMapping("/files")
+@RequestMapping(URL_FILES)
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 public class FileHandlerController {
 
     @Autowired
-    private AmazonS3ClientService amazonS3ClientService;
+    private ImageService imageService;
 
-    @PostMapping
-    public Map<String, String> uploadFile(@RequestPart(value = "file") MultipartFile file)
-    {
-        this.amazonS3ClientService.uploadFileToS3Bucket(file, true);
+    @PostMapping(value = URL_SAVE_IMG_GENERAL)
+    public ImageDTO uploadImage(@RequestPart(value = PARAM_MULTIPART_FILE) MultipartFile file, @RequestParam(PARAM_TITLE)String title, @RequestParam(PARAM_COMMENTS)String comments, @RequestParam(PARAM_TYPE_IMAGE) Long typeImage) throws MegacodeException {
 
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "file [" + file.getOriginalFilename() + "] uploading request submitted successfully.");
-
-        return response;
-    }
-
-    @DeleteMapping
-    public Map<String, String> deleteFile(@RequestParam("file_name") String fileName)
-    {
-        this.amazonS3ClientService.deleteFileFromS3Bucket(fileName);
-
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "file [" + fileName + "] removing request submitted successfully.");
-
-        return response;
+        return imageService.uploadImageToS3Bucket(file,title,comments,typeImage, true);
     }
 }

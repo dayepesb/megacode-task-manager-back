@@ -13,7 +13,7 @@ public class JsonPropertiesName {
     /**
      * IMAGE DTO
      */
-    public static final String PATH= "path";
+    public static final String PATH = "path";
     public static final String TITLE_IMAGE = "titleImage";
     public static final String COMMENTS_IMAGE = "commentsImage";
 }
