@@ -12,7 +12,7 @@ public class LabelDTO {
     private String labelEs;
 
     @JsonProperty(value = JsonPropertiesName.LABEL_EN, required = true, access = JsonProperty.Access.READ_ONLY)
-    private String labelEp;
+    private String labelEn ;
 
     public LabelDTO(){}
 
@@ -32,11 +32,11 @@ public class LabelDTO {
         this.labelEs = labelEs;
     }
 
-    public String getLabelEp() {
-        return labelEp;
+    public String getLabelEn() {
+        return labelEn;
     }
 
-    public void setLabelEp(String labelEp) {
-        this.labelEp = labelEp;
+    public void setLabelEn(String labelEn) {
+        this.labelEn = labelEn;
     }
 }

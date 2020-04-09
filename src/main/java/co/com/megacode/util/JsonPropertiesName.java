@@ -7,7 +7,7 @@ public class JsonPropertiesName {
      */
     public static final String KEY = "key";
     public static final String LABEL_ES = "labelEs";
-    public static final String LABEL_EN= "LabelEP";
+    public static final String LABEL_EN= "LabelEn";
 
 
     /**
