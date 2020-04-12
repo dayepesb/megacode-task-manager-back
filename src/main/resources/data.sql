@@ -25,3 +25,6 @@ INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (8,1,'megaco
 INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (9,1,'megacode.define.flow.description','Puedes agregar o quitar el flujo de trabajo de las tareas como quieras.','You can add or remove the task workflow as you like.');
 INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (10,1,'megacode.app.title','Continua El trabajo Desde Cualquier Parte','Work Continues From Anywhere');
 INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (11,1,'megacode.app.description','Ahora puedes continuar el trabajo descargando la app de megacode y supervisar los proyectos en que haces parte.','Now you can continue the work by downloading the megacode app and supervising the projects you are part of.');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (12,1,'megacode.label.home','Home','Home');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (13,1,'megacode.authentication.login','Login','Login');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (14,1,'megacode.authentication.register','Register','Register');
