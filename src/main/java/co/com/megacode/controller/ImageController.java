@@ -1,6 +1,6 @@
 package co.com.megacode.controller;
 
-import co.com.megacode.DTO.ImageDTO;
+import co.com.megacode.DTO.response.ImageResponseDTO;
 import co.com.megacode.service.impl.ImageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +19,7 @@ public class ImageController {
     ImageServiceImpl imageServiceImpl;
 
     @RequestMapping(value = URL_IMAGES_PRINCIPAL_PAGE ,method = {RequestMethod.GET} )
-    public List<ImageDTO> getImagesPrincipalPage(@RequestParam(name = PARAM_ID_APP) Long idApplication){
+    public List<ImageResponseDTO> getImagesPrincipalPage(@RequestParam(name = PARAM_ID_APP) Long idApplication){
         return imageServiceImpl.getImagePrincipalPageByIdApp(idApplication);
     }
 }

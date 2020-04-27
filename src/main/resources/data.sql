@@ -45,5 +45,6 @@ INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (26,1,'megac
 INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (27,1,'megacode.form.password.empty','La contraseña no puede estar vacia','The password cannot be empty.');
 INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (28,1,'megacode.form.password.invalid','La contraseña debe tener una mayuscula, una minuscula, un numero y debe tener minimo 8 caracteres','The password must have a capital letter, a lower case, number and must have a minimum of 8 characters');
 INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (29,1,'megacode.form.username.exist','El nombre de usuario ya existe.','Username already exist.');
-
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (30,1,'megacode.form.email.exist','El email ya existe.','Email already register.');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (31,1,'megacode.decrypt.error.aes','Error with any input.','Error with any input.');
 --INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (20,1,'megacode.','','');

@@ -2,6 +2,7 @@ package co.com.megacode.config;
 
 import co.com.megacode.DTO.ApiError;
 import co.com.megacode.exception.MegacodeException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolationException;
 
 @ControllerAdvice
 public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
@@ -44,6 +46,20 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = MegacodeException.class)
     public ResponseEntity<Object> defaultErrorMegacodeHandler(HttpServletRequest httpServletRequest, MegacodeException e) {
         ApiError apiError = new ApiError(HttpStatus.CONFLICT,e.getErrorCode(), e.getMessage());
+
+        return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
+    }
+
+    @ExceptionHandler(value = ConstraintViolationException.class)
+    public ResponseEntity<Object> defaultConstraintViolationHandler(HttpServletRequest httpServletRequest, ConstraintViolationException e) {
+        ApiError apiError = new ApiError(HttpStatus.CONFLICT,(long)HttpStatus.CONFLICT.value(), e.getMessage());
+
+        return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
+    }
+
+    @ExceptionHandler(value = DataIntegrityViolationException.class)
+    public ResponseEntity<Object> defaultDataIntegrityViolationHandler(HttpServletRequest httpServletRequest, DataIntegrityViolationException e) {
+        ApiError apiError = new ApiError(HttpStatus.CONFLICT,(long)HttpStatus.CONFLICT.value(), "Ha ocurrido un problema interno");
 
         return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
     }

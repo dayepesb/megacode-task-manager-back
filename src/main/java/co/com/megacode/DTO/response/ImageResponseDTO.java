@@ -1,9 +1,9 @@
-package co.com.megacode.DTO;
+package co.com.megacode.DTO.response;
 
 import co.com.megacode.util.JsonPropertiesName;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ImageDTO {
+public class ImageResponseDTO {
 
     @JsonProperty(value = JsonPropertiesName.PATH, required = true , access = JsonProperty.Access.READ_ONLY)
     private String path;

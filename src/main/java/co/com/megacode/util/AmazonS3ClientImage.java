@@ -41,7 +41,7 @@ public class AmazonS3ClientImage {
 
         try {
             StringTokenizer st = new StringTokenizer(fileName, ".");
-            fileNameMD5 = HashEncrypter.hashMD5(st.nextToken());
+            fileNameMD5 = MegacodeEncoder.hashMD5(st.nextToken());
         } catch (NoSuchAlgorithmException e) {
             throw e;
         }

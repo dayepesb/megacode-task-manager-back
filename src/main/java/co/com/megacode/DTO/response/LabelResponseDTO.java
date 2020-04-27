@@ -1,9 +1,9 @@
-package co.com.megacode.DTO;
+package co.com.megacode.DTO.response;
 
 import co.com.megacode.util.JsonPropertiesName;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class LabelDTO {
+public class LabelResponseDTO {
 
     @JsonProperty(value = JsonPropertiesName.KEY, required = true, access = JsonProperty.Access.READ_ONLY)
     private String key;
@@ -14,7 +14,7 @@ public class LabelDTO {
     @JsonProperty(value = JsonPropertiesName.LABEL_EN, required = true, access = JsonProperty.Access.READ_ONLY)
     private String labelEn ;
 
-    public LabelDTO(){}
+    public LabelResponseDTO(){}
 
     public String getKey() {
         return key;

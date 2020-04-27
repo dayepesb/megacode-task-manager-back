@@ -1,6 +1,6 @@
 package co.com.megacode.controller;
 
-import co.com.megacode.DTO.LabelDTO;
+import co.com.megacode.DTO.response.LabelResponseDTO;
 import co.com.megacode.service.impl.LabelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +19,8 @@ public class LabelController {
     private LabelServiceImpl labelServiceImpl;
 
     @RequestMapping(value = URL_LABELS_BY_APP,method = RequestMethod.GET)
-    public List<LabelDTO> getAllLabelsWithApp(@RequestParam(name = PARAM_ID_APP)Long idApp){
-        List<LabelDTO> labels = labelServiceImpl.getAllLabelsApp(idApp);
+    public List<LabelResponseDTO> getAllLabelsWithApp(@RequestParam(name = PARAM_ID_APP)Long idApp){
+        List<LabelResponseDTO> labels = labelServiceImpl.getAllLabelsApp(idApp);
         return labels;
     }
 

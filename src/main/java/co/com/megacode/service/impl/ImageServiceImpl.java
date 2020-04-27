@@ -1,6 +1,6 @@
 package co.com.megacode.service.impl;
 
-import co.com.megacode.DTO.ImageDTO;
+import co.com.megacode.DTO.response.ImageResponseDTO;
 import co.com.megacode.entity.ApplicationEntity;
 import co.com.megacode.entity.ImageEntity;
 import co.com.megacode.entity.TypeImageEntity;
@@ -43,20 +43,20 @@ public class ImageServiceImpl extends BaseService implements ImageService {
         logger = LoggerFactory.getLogger(ImageServiceImpl.class);
     }
 
-    public List<ImageDTO> getImagePrincipalPageByIdApp(Long idApplication) {
+    public List<ImageResponseDTO> getImagePrincipalPageByIdApp(Long idApplication) {
         logger.debug("Get images principal page by app id "+idApplication);
         List<ImageEntity> images = imageRepository.findImagesPrincipalPageByApp(idApplication);
         logger.debug(images.size()+" images were found");
-        List<ImageDTO> imagesDto = new LinkedList<>();
+        List<ImageResponseDTO> imagesDto = new LinkedList<>();
         for (ImageEntity imageEntity : images) {
-            ImageDTO dto = new ImageDTO();
+            ImageResponseDTO dto = new ImageResponseDTO();
             mapper.map(imageEntity, dto);
             imagesDto.add(dto);
         }
         return imagesDto;
     }
 
-    public ImageDTO uploadImageToS3Bucket(MultipartFile multipartFile,String title, String comment,Long type, boolean enablePublicReadAccess) throws MegacodeException {
+    public ImageResponseDTO uploadImageToS3Bucket(MultipartFile multipartFile, String title, String comment, Long type, boolean enablePublicReadAccess) throws MegacodeException {
         try {
             logger.debug("Upload image");
             String path = null;
@@ -97,10 +97,10 @@ public class ImageServiceImpl extends BaseService implements ImageService {
 
             logger.debug("Save Image in database");
 
-            ImageDTO imageDTO = new ImageDTO();
-            mapper.map(imageEntity,imageDTO);
+            ImageResponseDTO imageResponseDTO = new ImageResponseDTO();
+            mapper.map(imageEntity, imageResponseDTO);
 
-            return imageDTO;
+            return imageResponseDTO;
         } catch (IOException e) {
             logger.error(ErrorMessagesEnum.INTERNAL_ERROR.getMessage());
             throw new MegacodeException(ErrorMessagesEnum.INTERNAL_ERROR);

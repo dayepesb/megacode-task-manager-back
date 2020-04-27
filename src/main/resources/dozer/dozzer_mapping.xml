@@ -5,7 +5,7 @@
       http://dozer.sourceforge.net/schema/beanmapping.xsd">
     <mapping>
         <class-a>co.com.megacode.entity.LabelEntity</class-a>
-        <class-b>co.com.megacode.DTO.LabelDTO</class-b>
+        <class-b>co.com.megacode.DTO.response.LabelResponseDTO</class-b>
         <field>
             <a>key</a>
             <b>key</b>
@@ -21,7 +21,7 @@
     </mapping>
     <mapping>
         <class-a>co.com.megacode.entity.ImageEntity</class-a>
-        <class-b>co.com.megacode.DTO.ImageDTO</class-b>
+        <class-b>co.com.megacode.DTO.response.ImageResponseDTO</class-b>
         <field>
             <a>path</a>
             <b>path</b>

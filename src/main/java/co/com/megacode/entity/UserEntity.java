@@ -1,22 +1,19 @@
 package co.com.megacode.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "user")
 public class UserEntity extends BaseEntity {
 
-    @Column(name = "username", length = 30, nullable = false, unique = true)
+    @Column(name = "username", length = 150, nullable = false, unique = true)
     private String username;
 
-    @Column(name = "password", length = 30, nullable = false, unique = false)
+    @Column(name = "password", length = 500, nullable = false, unique = false)
     private String password;
 
-    @Column(name = "md5", length = 255, nullable = false, unique = true)
-    private String md5;
+    @Column(name = "salt", length = 500, nullable = false, unique = true)
+    private String salt;
 
     @Column(name = "name", length = 255, nullable = false, unique = false)
     private String name;
@@ -24,13 +21,16 @@ public class UserEntity extends BaseEntity {
     @Column(name = "laastName", length = 255, nullable = false, unique = false)
     private String lastName;
 
-    @Column(name = "numberPhone", length = 255, nullable = false, unique = false)
+    @Column(name = "numberPhone", length = 255, nullable = true, unique = false)
     private String numberPhone;
 
-    @Column(name = "image", length = 255, nullable = false, unique = true)
+    @Column(name = "image", length = 255, nullable = true, unique = true)
     private String image;
 
-    @ManyToOne
+    @Column(name = "email", length = 255, nullable = false, unique = true)
+    private String email;
+
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
     private CountryEntity country;
 
     public String getUsername() {
@@ -47,14 +47,6 @@ public class UserEntity extends BaseEntity {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getMd5() {
-        return md5;
-    }
-
-    public void setMd5(String md5) {
-        this.md5 = md5;
     }
 
     public String getName() {
@@ -87,5 +79,29 @@ public class UserEntity extends BaseEntity {
 
     public void setCountry(CountryEntity country) {
         this.country = country;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

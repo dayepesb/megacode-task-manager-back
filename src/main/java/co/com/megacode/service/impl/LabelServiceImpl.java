@@ -1,6 +1,6 @@
 package co.com.megacode.service.impl;
 
-import co.com.megacode.DTO.LabelDTO;
+import co.com.megacode.DTO.response.LabelResponseDTO;
 import co.com.megacode.entity.LabelEntity;
 import co.com.megacode.repository.LabelRepository;
 import co.com.megacode.service.BaseService;
@@ -17,13 +17,13 @@ public class LabelServiceImpl extends BaseService implements LabelService {
     @Autowired
     LabelRepository labelRepository;
 
-    public List<LabelDTO> getAllLabelsApp(Long idApp){
+    public List<LabelResponseDTO> getAllLabelsApp(Long idApp){
 
         List<LabelEntity> labels = labelRepository.findAllLabelsByIdApp(idApp);
 
-        List<LabelDTO> dtosList = new ArrayList<>();
+        List<LabelResponseDTO> dtosList = new ArrayList<>();
         for (LabelEntity labelEntity: labels) {
-            LabelDTO dto = new LabelDTO();
+            LabelResponseDTO dto = new LabelResponseDTO();
             mapper.map(labelEntity , dto);
             dtosList.add(dto);
         }
