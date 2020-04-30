@@ -1,39 +1,37 @@
 package co.com.megacode.service.impl;
 
-import co.com.megacode.DTO.request.UserRequestDTO;
+import co.com.megacode.DTO.request.UserLoginRequestDTO;
+import co.com.megacode.DTO.request.UserRegisterRequestDTO;
+import co.com.megacode.DTO.response.UserResponseDTO;
 import co.com.megacode.entity.UserEntity;
 import co.com.megacode.exception.MegacodeException;
 import co.com.megacode.repository.UserRepository;
+import co.com.megacode.service.BaseService;
 import co.com.megacode.service.UserService;
 import co.com.megacode.util.FormatUtil;
 import co.com.megacode.util.MegacodeEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import static co.com.megacode.enumeration.ErrorMessagesEnum.ERROR_NAME_EMPTY;
-import static co.com.megacode.enumeration.ErrorMessagesEnum.ERROR_LASTNAME_EMPTY;
-import static co.com.megacode.enumeration.ErrorMessagesEnum.ERROR_USERNAME_EMPTY;
-import static co.com.megacode.enumeration.ErrorMessagesEnum.ERROR_EMAIL_EMPTY;
-import static co.com.megacode.enumeration.ErrorMessagesEnum.ERROR_EMAIL_INVALID_FORMAT;
-import static co.com.megacode.enumeration.ErrorMessagesEnum.ERROR_PASSWORD_EMPTY;
-import static co.com.megacode.enumeration.ErrorMessagesEnum.ERROR_PASSWORD_INVALID;
-import static co.com.megacode.enumeration.ErrorMessagesEnum.ERROR_USERNAME_EXIST;
-import static co.com.megacode.enumeration.ErrorMessagesEnum.ERROR_EMAIL_REGISTER;
+import static co.com.megacode.enumeration.ErrorMessagesEnum.*;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends BaseService implements UserService {
 
     @Autowired
     private UserRepository userRepository;
 
-    @Override
-    public Object registerUser(UserRequestDTO userRequestDTO) throws MegacodeException{
+    @Autowired
+    private MegacodeEncoder encoder;
 
-        String name = userRequestDTO.getName();
-        String lastname = userRequestDTO.getLastname();
-        String userName = userRequestDTO.getUsername();
-        String email = userRequestDTO.getEmail();
-        String password = userRequestDTO.getPassword();
+    @Override
+    public UserResponseDTO registerUser(UserRegisterRequestDTO userRegisterRequestDTO) throws MegacodeException{
+
+        String name = userRegisterRequestDTO.getName();
+        String lastname = userRegisterRequestDTO.getLastname();
+        String userName = userRegisterRequestDTO.getUsername();
+        String email = userRegisterRequestDTO.getEmail();
+        String password = userRegisterRequestDTO.getPassword();
 
         if(name==null || name.isEmpty())
             throw new MegacodeException(ERROR_NAME_EMPTY);
@@ -64,19 +62,42 @@ public class UserServiceImpl implements UserService {
         if(userRegister != null)
             throw new MegacodeException(ERROR_EMAIL_REGISTER);
 
-        String salt = MegacodeEncoder.generateSalt();
-        String passwordDecryptAES = MegacodeEncoder.decryptAes(userRequestDTO.getPassword());
-        String passwordEncode = MegacodeEncoder.encodingPasswordUser(passwordDecryptAES, salt);
+        String passwordDecryptAES = encoder.decryptAes(userRegisterRequestDTO.getPassword());
+        String passwordEncode = encoder.encodingPasswordUser(passwordDecryptAES);
 
         UserEntity user = new UserEntity();
         user.setUsername(userName);
         user.setName(name);
         user.setLastName(lastname);
-        user.setSalt(salt);
         user.setPassword(passwordEncode);
         user.setEmail(email);
 
         userRepository.save(user);
+
+        UserResponseDTO userDTO = new UserResponseDTO();
+        mapper.map(user, userDTO);
+
+        return userDTO;
+    }
+
+    @Override
+    public UserEntity validateUsernamePassword(UserLoginRequestDTO userLoginRequestDTO) throws MegacodeException {
+
+        String username = userLoginRequestDTO.getUsername();
+        String passwordAes = userLoginRequestDTO.getPassword();
+        String passwordDecryptAES = encoder.decryptAes(passwordAes);
+
+        UserEntity user = userRepository.findByUsername(username);
+
+        if(user == null){
+            throw new MegacodeException(ERROR_BAD_CREDENTIALS);
+        }
+
+        String userPassword = user.getPassword();
+
+        if(!encoder.comparePassword(passwordDecryptAES, userPassword)){
+            throw new MegacodeException(ERROR_BAD_CREDENTIALS);
+        }
 
         return user;
     }

@@ -1,31 +1,61 @@
 package co.com.megacode.controller;
 
-import co.com.megacode.DTO.request.UserRequestDTO;
+import co.com.megacode.DTO.request.UserLoginRequestDTO;
+import co.com.megacode.DTO.request.UserRegisterRequestDTO;
+import co.com.megacode.DTO.response.UserResponseDTO;
+import co.com.megacode.entity.UserEntity;
 import co.com.megacode.exception.MegacodeException;
 import co.com.megacode.service.UserService;
-import co.com.megacode.util.UrlName;
+import co.com.megacode.util.JwtTokenUtil;
+import co.com.megacode.util.MegacodeEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import static co.com.megacode.constant.UrlName.*;
+
 @RestController
-@RequestMapping(value = UrlName.URL_USER)
+@RequestMapping(value = URL_USER)
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @PostMapping(value = UrlName.URL_REGISTER_USER,
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+
+    @Autowired
+    private MegacodeEncoder encoder;
+
+    @PostMapping(value = URL_REGISTER_USER,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             headers = { "content-type=application/json" })
-    public Object registerUser(@RequestBody(required = true) UserRequestDTO userRequestDTO) throws MegacodeException {
-        return userService.registerUser(userRequestDTO);
+    public UserResponseDTO registerUser(@RequestBody(required = true) UserRegisterRequestDTO userRegisterRequestDTO) throws MegacodeException {
+        return userService.registerUser(userRegisterRequestDTO);
     }
 
-    @PostMapping(value = "/login")
-    public Object loginUser(@RequestParam("user")String user,@RequestParam("password")String password){
-        return "";
+    @PostMapping(value = URL_LOGIN,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            headers = { "content-type=application/json" })
+    public UserResponseDTO loginUser(@RequestBody(required = true) UserLoginRequestDTO userLoginRequestDTO) throws MegacodeException {
+
+        UserEntity user = userService.validateUsernamePassword(userLoginRequestDTO);
+
+        UserDetails userDetails = new User(user.getUsername(),user.getPassword(), new ArrayList<>());
+        HashMap<String,String> claims = new HashMap<>();
+        claims.put("ID",String.valueOf(user.getId()));
+
+        final String token = jwtTokenUtil.generateToken(userDetails,claims);
+
+        UserResponseDTO responseDTO = new UserResponseDTO(user,token);
+
+        return responseDTO;
     }
 
 }

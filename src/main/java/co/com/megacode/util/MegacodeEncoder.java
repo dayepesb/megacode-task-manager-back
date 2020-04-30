@@ -3,7 +3,9 @@ package co.com.megacode.util;
 import co.com.megacode.exception.MegacodeException;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
@@ -13,12 +15,16 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
-import static co.com.megacode.util.Constant.*;
+import static co.com.megacode.constant.Constant.*;
 import static co.com.megacode.enumeration.ErrorMessagesEnum.ERROR_DECRYPT_AES;
 
+@Component
 public class MegacodeEncoder {
 
-    public static String generateSalt(){
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    public String generateSalt(){
 
         Random r = new Random();
         int strLengthPassword = r.nextInt(( MAX_NUMBER_STR_SECRET_KEY - MIN_NUMBER_STR_SECRET_KEY ) + 1) + MIN_NUMBER_STR_SECRET_KEY;
@@ -30,15 +36,16 @@ public class MegacodeEncoder {
         return generatedString;
     }
 
-    public static String encodingPasswordUser(String password, String secretKey) {
-        Pbkdf2PasswordEncoder enconder = new Pbkdf2PasswordEncoder(secretKey, ITER_NUMBER_EXCRYPT_PASSWORD,LENGTH_HASH_ENCODE_PASSSWORD);
-
-        String passwordEncoder = enconder.encode(password);
-
-        return passwordEncoder;
+    public String encodingPasswordUser(String password) {
+        String passEncode = passwordEncoder.encode(password);
+        return passEncode;
     }
 
-    public static String hashMD5(String word) throws NoSuchAlgorithmException {
+    public Boolean comparePassword(String password, String hash) {
+        return passwordEncoder.matches(password,hash);
+    }
+
+    public String hashMD5(String word) throws NoSuchAlgorithmException {
 
         MessageDigest messageDigest = MessageDigest.getInstance("MD5");
 
@@ -52,7 +59,7 @@ public class MegacodeEncoder {
 
     }
 
-    public static String decryptAes(String word) throws MegacodeException {
+    public String decryptAes(String word) throws MegacodeException {
         try {
             IvParameterSpec iv = new IvParameterSpec(PRIVATE_IV_AES.getBytes("UTF-8"));
             SecretKeySpec secretKey = new SecretKeySpec(PRIVATE_KEY_AES.getBytes("UTF-8"), "AES");

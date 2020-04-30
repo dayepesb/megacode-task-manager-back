@@ -1,6 +1,6 @@
 package co.com.megacode.DTO.response;
 
-import co.com.megacode.util.JsonPropertiesName;
+import co.com.megacode.constant.JsonPropertiesName;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class LabelResponseDTO {

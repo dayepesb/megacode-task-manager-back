@@ -35,4 +35,28 @@
             <b>commentsImage</b>
         </field>
     </mapping>
+    <mapping>
+        <class-a>co.com.megacode.entity.UserEntity</class-a>
+        <class-b>co.com.megacode.DTO.response.UserResponseDTO</class-b>
+        <field>
+            <a>username</a>
+            <b>username</b>
+        </field>
+        <field>
+            <a>name</a>
+            <b>name</b>
+        </field>
+        <field>
+            <a>lastName</a>
+            <b>lastname</b>
+        </field>
+        <field>
+            <a>image</a>
+            <b>image</b>
+        </field>
+        <field>
+            <a>email</a>
+            <b>email</b>
+        </field>
+    </mapping>
 </mappings>

@@ -26,6 +26,9 @@ public class AmazonS3ClientImage {
     private AmazonS3 amazonS3;
 
     @Autowired
+    private MegacodeEncoder encoder;
+
+    @Autowired
     public AmazonS3ClientImage(Region awsRegion, AWSCredentialsProvider awsCredentialsProvider, String awsS3AudioBucket)
     {
         this.amazonS3 = AmazonS3ClientBuilder.standard()
@@ -41,7 +44,7 @@ public class AmazonS3ClientImage {
 
         try {
             StringTokenizer st = new StringTokenizer(fileName, ".");
-            fileNameMD5 = MegacodeEncoder.hashMD5(st.nextToken());
+            fileNameMD5 = encoder.hashMD5(st.nextToken());
         } catch (NoSuchAlgorithmException e) {
             throw e;
         }

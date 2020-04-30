@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-import static co.com.megacode.util.UrlName.URL_IMAGES;
-import static co.com.megacode.util.UrlName.URL_IMAGES_PRINCIPAL_PAGE;
-import static co.com.megacode.util.ParamsName.PARAM_ID_APP;
+import static co.com.megacode.constant.UrlName.URL_IMAGES;
+import static co.com.megacode.constant.UrlName.URL_IMAGES_PRINCIPAL_PAGE;
+import static co.com.megacode.constant.ParamsName.PARAM_ID_APP;
 
 @RestController
 @RequestMapping(value = URL_IMAGES)

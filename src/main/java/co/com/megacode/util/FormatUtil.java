@@ -3,9 +3,9 @@ package co.com.megacode.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static co.com.megacode.util.Constant.REGULAR_EXPRESSION_EMAIL;
-import static co.com.megacode.util.Constant.MINUMUN_CHARACTERS_PASSWORD;
-import static co.com.megacode.util.Constant.REGEX_PATTERNS;
+import static co.com.megacode.constant.Constant.REGULAR_EXPRESSION_EMAIL;
+import static co.com.megacode.constant.Constant.MINUMUN_CHARACTERS_PASSWORD;
+import static co.com.megacode.constant.Constant.REGEX_PATTERNS;
 
 public class FormatUtil {
 

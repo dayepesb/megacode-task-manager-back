@@ -1,15 +1,6 @@
 package co.com.megacode.enumeration;
 
-import static co.com.megacode.util.Constant.LABEL_ERROR_NAME_EMPTY;
-import static co.com.megacode.util.Constant.LABEL_ERROR_LASTNAME_EMPTY;
-import static co.com.megacode.util.Constant.LABEL_ERROR_USERNAME_EMPTY;
-import static co.com.megacode.util.Constant.LABEL_ERROR_EMAIL_EMPTY;
-import static co.com.megacode.util.Constant.LABEL_ERROR_EMAIL_INVALID_FORMAT;
-import static co.com.megacode.util.Constant.LABEL_ERROR_PASSWORD_EMPTY;
-import static co.com.megacode.util.Constant.LABEL_ERROR_PASSWORD_INVALID;
-import static co.com.megacode.util.Constant.LABEL_ERROR_USERNAME_EXIST;
-import static co.com.megacode.util.Constant.LABEL_ERROR_EMAIL_REGISTER;
-import static co.com.megacode.util.Constant.LABEL_ERROR_DECRYPT_AES;
+import static co.com.megacode.constant.Constant.*;
 
 public enum ErrorMessagesEnum {
 
@@ -26,7 +17,8 @@ public enum ErrorMessagesEnum {
     ERROR_PASSWORD_INVALID(-11L,LABEL_ERROR_PASSWORD_INVALID),
     ERROR_USERNAME_EXIST(-12L,LABEL_ERROR_USERNAME_EXIST),
     ERROR_EMAIL_REGISTER(-13L,LABEL_ERROR_EMAIL_REGISTER),
-    ERROR_DECRYPT_AES(-14L,LABEL_ERROR_DECRYPT_AES);
+    ERROR_DECRYPT_AES(-14L,LABEL_ERROR_DECRYPT_AES),
+    ERROR_BAD_CREDENTIALS(-15L,LABEL_ERROR_BAD_CREDENTIALS);
 
     private Long codeError;
     private String message;

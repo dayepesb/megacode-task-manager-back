@@ -1,9 +1,9 @@
 package co.com.megacode.DTO.request;
 
-import co.com.megacode.util.JsonPropertiesName;
+import co.com.megacode.constant.JsonPropertiesName;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UserRequestDTO {
+public class UserRegisterRequestDTO {
 
     @JsonProperty(value = JsonPropertiesName.NAME, required = true, access = JsonProperty.Access.READ_WRITE)
     private String name;

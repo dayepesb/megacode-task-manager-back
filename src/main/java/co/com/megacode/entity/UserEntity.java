@@ -12,9 +12,6 @@ public class UserEntity extends BaseEntity {
     @Column(name = "password", length = 500, nullable = false, unique = false)
     private String password;
 
-    @Column(name = "salt", length = 500, nullable = false, unique = true)
-    private String salt;
-
     @Column(name = "name", length = 255, nullable = false, unique = false)
     private String name;
 
@@ -79,14 +76,6 @@ public class UserEntity extends BaseEntity {
 
     public void setCountry(CountryEntity country) {
         this.country = country;
-    }
-
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
     }
 
     public String getImage() {

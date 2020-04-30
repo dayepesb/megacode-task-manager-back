@@ -1,20 +1,18 @@
 package co.com.megacode.config;
 
 
-import co.com.megacode.util.AmazonS3ClientImage;
 import co.com.megacode.util.ApplicationUtil;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
-import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Configuration
 public class AppConfig {
@@ -40,4 +38,8 @@ public class AppConfig {
         return new ApplicationUtil();
     }
 
+    @Bean(name = "org.springframework.security.crypto.password.PasswordEncoder")
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2A, 15, null);
+    }
 }

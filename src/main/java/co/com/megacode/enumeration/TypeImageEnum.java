@@ -1,6 +1,6 @@
 package co.com.megacode.enumeration;
 
-import co.com.megacode.util.PathsImages;
+import co.com.megacode.constant.PathsImages;
 
 public enum TypeImageEnum {
 

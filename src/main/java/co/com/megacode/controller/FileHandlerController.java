@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import static co.com.megacode.util.ParamsName.*;
-import static co.com.megacode.util.UrlName.URL_FILES;
-import static co.com.megacode.util.UrlName.URL_SAVE_IMG_GENERAL;
+import static co.com.megacode.constant.ParamsName.*;
+import static co.com.megacode.constant.UrlName.URL_FILES;
+import static co.com.megacode.constant.UrlName.URL_SAVE_IMG_GENERAL;
 
 @RestController
 @RequestMapping(URL_FILES)

@@ -11,4 +11,10 @@ public class UrlName {
     public static final String URL_USER = "/athentication";
     public static final String URL_REGISTER_USER = "/register";
 
+    public static final String [] URL_WITHOUT_AUTHENTICATION =  new String[] {
+            URL_LABELS,
+            URL_IMAGES_PRINCIPAL_PAGE,
+            URL_REGISTER_USER,
+            URL_USER
+    };
 }
