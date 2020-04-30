@@ -1,4 +1,4 @@
-package co.com.megacode.util;
+package co.com.megacode.constant;
 
 import java.util.regex.Pattern;
 
@@ -30,4 +30,5 @@ public class Constant {
     public static String LABEL_ERROR_USERNAME_EXIST = "megacode.form.username.exist";
     public static String LABEL_ERROR_EMAIL_REGISTER = "megacode.form.email.exist";
     public static String LABEL_ERROR_DECRYPT_AES = "megacode.decrypt.error.aes";
+    public static String LABEL_ERROR_BAD_CREDENTIALS = "megacode.user.bad.credentials";
 }

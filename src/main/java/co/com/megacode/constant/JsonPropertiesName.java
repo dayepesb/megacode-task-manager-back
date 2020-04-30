@@ -1,4 +1,4 @@
-package co.com.megacode.util;
+package co.com.megacode.constant;
 
 public class JsonPropertiesName {
 
@@ -25,4 +25,6 @@ public class JsonPropertiesName {
     public static final String USERNAME = "username";
     public static final String EMAIL = "email";
     public static final String PASSWORD = "password";
+    public static final String IMAGE = "userImage";
+    public static final String TOKEN = "token";
 }

@@ -1,4 +1,4 @@
-package co.com.megacode.util;
+package co.com.megacode.constant;
 
 public class PathsImages {
 
