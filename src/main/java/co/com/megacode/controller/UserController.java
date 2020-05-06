@@ -30,9 +30,6 @@ public class UserController {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
-    @Autowired
-    private MegacodeEncoder encoder;
-
     @PostMapping(value = URL_REGISTER_USER,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             headers = { "content-type=application/json" })

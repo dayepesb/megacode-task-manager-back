@@ -87,7 +87,7 @@ public class UserServiceImpl extends BaseService implements UserService {
         String passwordAes = userLoginRequestDTO.getPassword();
         String passwordDecryptAES = encoder.decryptAes(passwordAes);
 
-        UserEntity user = userRepository.findByUsername(username);
+        UserEntity user = userRepository.findByUsernameOrEmail(username);
 
         if(user == null){
             throw new MegacodeException(ERROR_BAD_CREDENTIALS);

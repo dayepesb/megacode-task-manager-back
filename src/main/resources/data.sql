@@ -48,5 +48,6 @@ INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (29,1,'megac
 INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (30,1,'megacode.form.email.exist','El email ya existe.','Email already register.');
 INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (31,1,'megacode.decrypt.error.aes','Error with any input.','Error with any input.');
 INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (32,1,'megacode.user.bad.credentials','Nombre de usuario o contraseña son incorrectas.','Username or password incorrect.');
-
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (33,1,'megacode.form.register.title.sucess','Se realizo el registro con éxito','Register Successfull.');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (34,1,'megacode.form.register.description.sucess','Se realizo el registro con exito, por favor accede a la pagina de inicio de sesión.','Registration was successful, please access the login page');
 --INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (20,1,'megacode.','','');
