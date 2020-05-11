@@ -11,6 +11,7 @@ public class UrlName {
     public static final String URL_USER = "/authentication";
     public static final String URL_REGISTER_USER = "/register";
     public static final String URL_LOGIN = "/login";
+    public static final String URL_VERIFY_USER = "/verify";
 
 
 }

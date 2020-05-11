@@ -31,4 +31,6 @@ public class Constant {
     public static String LABEL_ERROR_EMAIL_REGISTER = "megacode.form.email.exist";
     public static String LABEL_ERROR_DECRYPT_AES = "megacode.decrypt.error.aes";
     public static String LABEL_ERROR_BAD_CREDENTIALS = "megacode.user.bad.credentials";
+    public static String LABEL_TOKEN_EXPIRED = "megacode.user.token.expired";
+    public static String LABEL_TOKEN_CONVERSION = "megacode.user.token.error.conversion";
 }

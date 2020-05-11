@@ -2,6 +2,7 @@ package co.com.megacode.controller;
 
 import co.com.megacode.DTO.request.UserLoginRequestDTO;
 import co.com.megacode.DTO.request.UserRegisterRequestDTO;
+import co.com.megacode.DTO.request.UserVerifyDTO;
 import co.com.megacode.DTO.response.UserResponseDTO;
 import co.com.megacode.entity.UserEntity;
 import co.com.megacode.exception.MegacodeException;
@@ -14,6 +15,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -33,7 +36,7 @@ public class UserController {
     @PostMapping(value = URL_REGISTER_USER,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             headers = { "content-type=application/json" })
-    public UserResponseDTO registerUser(@RequestBody(required = true) UserRegisterRequestDTO userRegisterRequestDTO) throws MegacodeException {
+    public UserResponseDTO registerUser(@RequestBody(required = true) UserRegisterRequestDTO userRegisterRequestDTO) throws MegacodeException, IOException, MessagingException {
         return userService.registerUser(userRegisterRequestDTO);
     }
 
@@ -55,4 +58,11 @@ public class UserController {
         return responseDTO;
     }
 
+    @PostMapping(value = URL_VERIFY_USER,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            headers = { "content-type=application/json" })
+    public Boolean verifyUser(@RequestBody(required = true) UserVerifyDTO userVerifyDTO) throws MegacodeException {
+
+        return this.userService.verifyUser(userVerifyDTO);
+    }
 }
