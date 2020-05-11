@@ -1,4 +1,4 @@
-package co.com.megacode.config;
+package co.com.megacode.config.app;
 
 
 import co.com.megacode.util.ApplicationUtil;

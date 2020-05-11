@@ -1,5 +1,7 @@
-package co.com.megacode.config;
+package co.com.megacode.config.security;
 
+import co.com.megacode.config.jwt.JwtAuthenticationEntryPoint;
+import co.com.megacode.config.jwt.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;

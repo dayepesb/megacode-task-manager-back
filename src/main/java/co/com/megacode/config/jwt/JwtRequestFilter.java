@@ -1,4 +1,4 @@
-package co.com.megacode.config;
+package co.com.megacode.config.jwt;
 
 import co.com.megacode.entity.UserEntity;
 import co.com.megacode.repository.UserRepository;

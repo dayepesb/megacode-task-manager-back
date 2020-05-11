@@ -1,4 +1,4 @@
-package co.com.megacode.config;
+package co.com.megacode.config.amazon;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
