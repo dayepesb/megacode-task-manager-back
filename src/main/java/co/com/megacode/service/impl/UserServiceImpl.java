@@ -15,7 +15,9 @@ import co.com.megacode.util.JwtTokenUtil;
 import co.com.megacode.util.MegacodeEncoder;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import javax.mail.MessagingException;
 import javax.transaction.Transactional;
@@ -91,7 +93,7 @@ public class  UserServiceImpl extends BaseService implements UserService {
 
         userRepository.save(user);
 
-        mailerService.sendMailVerifyAccount(user);
+        this.sendEmailVerifyUser(user);
 
         UserResponseDTO userDTO = new UserResponseDTO();
         mapper.map(user, userDTO);
@@ -100,17 +102,18 @@ public class  UserServiceImpl extends BaseService implements UserService {
     }
 
     @Override
-    public UserEntity validateUsernamePassword(UserLoginRequestDTO userLoginRequestDTO) throws MegacodeException {
+    public UserEntity validateUsernamePassword(UserLoginRequestDTO userLoginRequestDTO) throws MegacodeException, IOException, MessagingException {
 
         String username = userLoginRequestDTO.getUsername();
-        String passwordAes = userLoginRequestDTO.getPassword();
-        String passwordDecryptAES = encoder.decryptAes(passwordAes);
 
         UserEntity user = userRepository.findByUsernameOrEmail(username);
 
         if(user == null){
             throw new MegacodeException(ERROR_BAD_CREDENTIALS);
         }
+
+        String passwordAes = userLoginRequestDTO.getPassword();
+        String passwordDecryptAES = encoder.decryptAes(passwordAes);
 
         String userPassword = user.getPassword();
 
@@ -119,7 +122,8 @@ public class  UserServiceImpl extends BaseService implements UserService {
         }
 
         if(!user.isVerify()){
-
+            //mailerService.sendMailVerifyAccount(user);
+            throw new MegacodeException(ERROR_USER_NO_ACTIVATE);
         }
 
         return user;
@@ -161,5 +165,23 @@ public class  UserServiceImpl extends BaseService implements UserService {
         return true;
     }
 
+    @Override
+    public void resendVerifyUser(String email) throws MegacodeException, IOException, MessagingException {
+        UserEntity user = userRepository.findByEmail(email);
+
+        if (user == null) {
+            throw new MegacodeException(ERROR_EMAIL_NO_REGISTER);
+        }
+
+        if (user.isVerify()) {
+            throw new MegacodeException(ERROR_USER_VERIFY);
+        }
+
+        this.sendEmailVerifyUser(user);
+    }
+
+    private void sendEmailVerifyUser(UserEntity user) throws IOException, MessagingException {
+        mailerService.sendMailVerifyAccount(user);
+    }
 
 }

@@ -64,4 +64,12 @@ INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (40,1,'megac
 INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (41,1,'megacode.account.verify.describe.error','Ocurrio algun error al tratar de verificar el usuario, por favor solicite de nuevo el correo de verificación e intentelo nuevamente.','An error occurred while trying to verify the user, please request the verification email again and try again.');
 INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (42,1,'megacode.user.token.expired','JWT Expired','JWT Expired');
 INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (43,1,'megacode.user.token.error.conversion','JWT Error Conversion','JWT Error Conversion');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (44,1,'megacode.user.inactivate','Usuario no activo, porfavor verifica tu correo','User no active, please verify your email.');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (45,1,'megacode.error.empty.input.title','Campos invalidos','Invalid inputs');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (46,1,'megacode.error.empty.input.description','Por favor completa todos los campos.','Please complete all inputs.');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (47,1,'megacode.enail.noregister','Usuario no registrado','User no register.');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (48,1,'megacode.user.verify','El usuario ya esta verificado.','The user is already verified.');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (49,1,'megacode.resend.email.success','El correo se envió correctamente.','The mail was sent successfully.');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (50,1,'megacode.form.success','Éxito','Success');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (51,1,'megacode.user.verify.description','Tu cuenta no ha sido verificada, por favor ingresa tu correo electrónico para enviar el correo de verificación.','Your account has not been verified, please enter your email to send the verification email.');
 --INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (20,1,'megacode.','','');

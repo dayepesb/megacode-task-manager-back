@@ -33,4 +33,7 @@ public class Constant {
     public static String LABEL_ERROR_BAD_CREDENTIALS = "megacode.user.bad.credentials";
     public static String LABEL_TOKEN_EXPIRED = "megacode.user.token.expired";
     public static String LABEL_TOKEN_CONVERSION = "megacode.user.token.error.conversion";
+    public static String LABEL_USER_INACTIVATE = "megacode.user.inactivate";
+    public static String LABEL_EMAIL_NO_REGISTER = "megacode.enail.noregister";
+    public static String LABEL_USER_VERIFY = "megacode.user.verify";
 }

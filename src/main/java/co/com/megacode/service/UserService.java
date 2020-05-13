@@ -14,7 +14,9 @@ public interface UserService {
 
     UserResponseDTO registerUser(UserRegisterRequestDTO user) throws MegacodeException, IOException, MessagingException;
 
-    UserEntity validateUsernamePassword(UserLoginRequestDTO userLoginRequestDTO) throws MegacodeException;
+    UserEntity validateUsernamePassword(UserLoginRequestDTO userLoginRequestDTO) throws MegacodeException, IOException, MessagingException;
 
     Boolean verifyUser(UserVerifyDTO userVerifyDTO) throws MegacodeException;
+
+    void resendVerifyUser(String email) throws MegacodeException, IOException, MessagingException;
 }

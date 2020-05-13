@@ -16,7 +16,8 @@ public class JwtConstant {
             concat(URL_LABELS, URL_LABELS_BY_APP),
             concat(URL_USER, URL_REGISTER_USER),
             concat(URL_USER, URL_LOGIN),
-            concat(URL_USER, URL_VERIFY_USER)
+            concat(URL_USER, URL_VERIFY_USER),
+            concat(URL_USER, URL_RESEND_VERIFY_USER)
     };
 
     private static String concat (String ... urls){

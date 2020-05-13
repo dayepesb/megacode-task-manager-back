@@ -8,7 +8,6 @@ import co.com.megacode.entity.UserEntity;
 import co.com.megacode.exception.MegacodeException;
 import co.com.megacode.service.UserService;
 import co.com.megacode.util.JwtTokenUtil;
-import co.com.megacode.util.MegacodeEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.userdetails.User;
@@ -43,7 +42,7 @@ public class UserController {
     @PostMapping(value = URL_LOGIN,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             headers = { "content-type=application/json" })
-    public UserResponseDTO loginUser(@RequestBody(required = true) UserLoginRequestDTO userLoginRequestDTO) throws MegacodeException {
+    public UserResponseDTO loginUser(@RequestBody(required = true) UserLoginRequestDTO userLoginRequestDTO) throws MegacodeException, IOException, MessagingException {
 
         UserEntity user = userService.validateUsernamePassword(userLoginRequestDTO);
 
@@ -64,5 +63,10 @@ public class UserController {
     public Boolean verifyUser(@RequestBody(required = true) UserVerifyDTO userVerifyDTO) throws MegacodeException {
 
         return this.userService.verifyUser(userVerifyDTO);
+    }
+
+    @GetMapping(value = URL_RESEND_VERIFY_USER)
+    public void verifyUser(@RequestParam("email") String email) throws MegacodeException, IOException, MessagingException {
+        this.userService.resendVerifyUser(email);
     }
 }

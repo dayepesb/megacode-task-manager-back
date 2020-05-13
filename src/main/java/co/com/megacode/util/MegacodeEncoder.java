@@ -24,18 +24,6 @@ public class MegacodeEncoder {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public String generateSalt(){
-
-        Random r = new Random();
-        int strLengthPassword = r.nextInt(( MAX_NUMBER_STR_SECRET_KEY - MIN_NUMBER_STR_SECRET_KEY ) + 1) + MIN_NUMBER_STR_SECRET_KEY;
-
-        boolean useLetters = true;
-        boolean useNumbers = false;
-        String generatedString = RandomStringUtils.random(strLengthPassword, useLetters, useNumbers);
-
-        return generatedString;
-    }
-
     public String encodingPasswordUser(String password) {
         String passEncode = passwordEncoder.encode(password);
         return passEncode;
