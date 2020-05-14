@@ -72,4 +72,5 @@ INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (48,1,'megac
 INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (49,1,'megacode.resend.email.success','El correo se envió correctamente.','The mail was sent successfully.');
 INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (50,1,'megacode.form.success','Éxito','Success');
 INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (51,1,'megacode.user.verify.description','Tu cuenta no ha sido verificada, por favor ingresa tu correo electrónico para enviar el correo de verificación.','Your account has not been verified, please enter your email to send the verification email.');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (52,1,'megacode.authentication.verify','Verificar','Verify');
 --INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (20,1,'megacode.','','');

@@ -8,4 +8,6 @@ import java.io.IOException;
 public interface MailerService {
 
     void sendMailVerifyAccount(UserEntity user) throws IOException, MessagingException;
+
+    void sendMailWelcomePlatform(UserEntity user) throws IOException, MessagingException;
 }

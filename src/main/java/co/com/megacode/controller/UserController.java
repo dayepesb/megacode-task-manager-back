@@ -60,13 +60,17 @@ public class UserController {
     @PostMapping(value = URL_VERIFY_USER,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             headers = { "content-type=application/json" })
-    public Boolean verifyUser(@RequestBody(required = true) UserVerifyDTO userVerifyDTO) throws MegacodeException {
-
+    public Boolean verifyUser(@RequestBody(required = true) UserVerifyDTO userVerifyDTO) throws MegacodeException, IOException, MessagingException {
         return this.userService.verifyUser(userVerifyDTO);
     }
 
     @GetMapping(value = URL_RESEND_VERIFY_USER)
     public void verifyUser(@RequestParam("email") String email) throws MegacodeException, IOException, MessagingException {
         this.userService.resendVerifyUser(email);
+    }
+
+    @GetMapping(value = URL_VERIFY_TOKEN)
+    public void verifyToken(@RequestParam("token") String token) throws MegacodeException, IOException, MessagingException {
+        this.userService.verifyToken(token);
     }
 }

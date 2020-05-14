@@ -13,5 +13,6 @@ public class UrlName {
     public static final String URL_LOGIN = "/login";
     public static final String URL_VERIFY_USER = "/verify";
     public static final String URL_RESEND_VERIFY_USER = "/resend/verify";
+    public static final String URL_VERIFY_TOKEN = "/token/verify";
 
 }

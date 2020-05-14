@@ -42,14 +42,39 @@ public class MailServiceImpl extends BaseService implements MailerService {
 
             HashMap<String, String> model = new HashMap();
             model.put("name", user.getName()+" "+user.getLastName());
-            model.put("url", nameServer+token);
+            model.put("url", String.format("%s/verify?token=%s",nameServer, token));
 
             mail.setModel(model);
 
             mailer.sendTemplateThymeleafMessage(mail);
         } catch (MessagingException | IOException e) {
-            System.out.println(e);
             logger.error(e.getMessage());
+            logger.error(e.toString());
+            System.out.println(e);
+            throw e;
+        }
+    }
+
+    @Async
+    @Override
+    public void sendMailWelcomePlatform(UserEntity user) throws IOException, MessagingException {
+        try {
+            MailDTO mail = new MailDTO();
+            mail.setTo(user.getEmail());
+            mail.setSubject("Welcome Megacode !!!");
+            mail.setNameTemplate("welcome-megacode");
+
+            HashMap<String, String> model = new HashMap();
+            model.put("name", user.getName()+" "+user.getLastName());
+            model.put("url", String.format("%s",nameServer));
+
+            mail.setModel(model);
+
+            mailer.sendTemplateThymeleafMessage(mail);
+        } catch (MessagingException | IOException e) {
+            logger.error(e.getMessage());
+            logger.error(e.toString());
+            System.out.println(e);
             throw e;
         }
     }

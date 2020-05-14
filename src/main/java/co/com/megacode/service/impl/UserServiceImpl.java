@@ -15,9 +15,7 @@ import co.com.megacode.util.JwtTokenUtil;
 import co.com.megacode.util.MegacodeEncoder;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 import javax.mail.MessagingException;
 import javax.transaction.Transactional;
@@ -130,7 +128,7 @@ public class  UserServiceImpl extends BaseService implements UserService {
     }
 
     @Override
-    public Boolean verifyUser(UserVerifyDTO userVerifyDTO) throws MegacodeException {
+    public Boolean verifyUser(UserVerifyDTO userVerifyDTO) throws MegacodeException, IOException, MessagingException {
 
         String token = userVerifyDTO.getToken();
 
@@ -162,6 +160,8 @@ public class  UserServiceImpl extends BaseService implements UserService {
         user.setVerify(true);
         userRepository.save(user);
 
+        mailerService.sendMailWelcomePlatform(user);
+
         return true;
     }
 
@@ -178,6 +178,40 @@ public class  UserServiceImpl extends BaseService implements UserService {
         }
 
         this.sendEmailVerifyUser(user);
+    }
+
+    @Override
+    public void verifyToken(String token) throws MegacodeException {
+        try {
+            if( jwtTokenUtil.isTokenExpired(token) ){
+                //token expirado
+                throw new MegacodeException(ERROR_TOKEN_EXPIRED);
+            }
+
+            Claims claims = jwtTokenUtil.getAllClaimsFromToken(token);
+            Long id = Long.parseLong(claims.get("ID",String.class));
+
+            if(id == null)
+                throw new MegacodeException(ERROR_TOKEN_EXPIRED);
+
+            Optional<UserEntity> userOptional = this.userRepository.findById(id);
+
+            if(!userOptional.isPresent()) {
+                throw new MegacodeException(ERROR_BAD_CREDENTIALS);
+            }
+            
+        } catch (Exception e) {
+            logger.error("token Expirado");
+            logger.error(e.getClass().toString());
+            logger.error(e.getMessage());
+            if( e.getClass() == SignatureException.class ){
+                //conversion token fallido
+                throw new MegacodeException(ERROR_TOKEN_CONVERSION);
+            }else {
+                //Token Expirado
+                throw new MegacodeException(ERROR_TOKEN_EXPIRED);
+            }
+        }
     }
 
     private void sendEmailVerifyUser(UserEntity user) throws IOException, MessagingException {
