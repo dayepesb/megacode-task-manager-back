@@ -1,4 +1,4 @@
-package co.com.megacode.config;
+package co.com.megacode.config.app;
 
 
 import co.com.megacode.util.ApplicationUtil;
@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -15,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Configuration
+@EnableAsync
 public class AppConfig {
 
     @Value("classpath:dozer/dozzer_mapping.xml")

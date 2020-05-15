@@ -3,16 +3,21 @@ DELETE FROM megacode.image;
 DELETE FROM megacode.type_image;
 DELETE FROM megacode.application;
 
+
 -- applications
 INSERT INTO megacode.application(id,name) VALUE (1,'task-manager');
 INSERT INTO megacode.application(id,name) VALUE (2,'online-judge');
+
 
 -- type images
 INSERT INTO megacode.type_image(id,name_type,comments) VALUE (1,'principal-page',null);
 INSERT INTO megacode.type_image(id,name_type,comments) VALUE (2,'user-profile',null);
 
+
 -- images
 INSERT INTO megacode.image(id,type_image_id,application_id,path,comments_image,title_imaghe) VALUES (1,1,1,'images/general/BCC35C16846159B80A8897FF20803BC2-slide_1.png','', 'App Megacode');
+
+
 -- Labels
 INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (1,1,'megacode.taskmanager.title','Megacode','Megacode');
 INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (2,1,'megacode.kanban.title','Kanban','Kanban');
@@ -48,5 +53,24 @@ INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (29,1,'megac
 INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (30,1,'megacode.form.email.exist','El email ya existe.','Email already register.');
 INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (31,1,'megacode.decrypt.error.aes','Error with any input.','Error with any input.');
 INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (32,1,'megacode.user.bad.credentials','Nombre de usuario o contraseña son incorrectas.','Username or password incorrect.');
-
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (33,1,'megacode.form.register.title.sucess','Se realizo el registro con éxito','Register Successfull.');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (34,1,'megacode.form.register.description.sucess','Se realizo el registro con exito, please verify your account.','Registration was successful, please access the login page');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (35,1,'megacode.label.signup','No tienes una cuenta? Registrate','You do not have an account ? Sign up');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (36,1,'megacode.label.forgotpassword','Olvidaste tu contraseña ?','Forgot your password ?');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (37,1,'megacode.placeholder.username.email','nombre de usuario o correo','Username or Email');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (38,1,'megacode.account.verify.title.success','Usuario Verificado Con Éxito','User Verified Successfully');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (39,1,'megacode.account.verify.title.error','Error Al Verificar El Usuario','Error Verifying User');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (40,1,'megacode.account.verify.describe.success','El usuario ha sido verificado con exito, te invitamos a ingresar a la paltaforma y disfrutar de todo nuestro contenido.','The user has been successfully verified, we invite you to enter the platform and enjoy all our content.');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (41,1,'megacode.account.verify.describe.error','Ocurrio algun error al tratar de verificar el usuario, por favor solicite de nuevo el correo de verificación e intentelo nuevamente.','An error occurred while trying to verify the user, please request the verification email again and try again.');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (42,1,'megacode.user.token.expired','JWT Expired','JWT Expired');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (43,1,'megacode.user.token.error.conversion','JWT Error Conversion','JWT Error Conversion');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (44,1,'megacode.user.inactivate','Usuario no activo, porfavor verifica tu correo','User no active, please verify your email.');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (45,1,'megacode.error.empty.input.title','Campos invalidos','Invalid inputs');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (46,1,'megacode.error.empty.input.description','Por favor completa todos los campos.','Please complete all inputs.');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (47,1,'megacode.enail.noregister','Usuario no registrado','User no register.');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (48,1,'megacode.user.verify','El usuario ya esta verificado.','The user is already verified.');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (49,1,'megacode.resend.email.success','El correo se envió correctamente.','The mail was sent successfully.');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (50,1,'megacode.form.success','Éxito','Success');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (51,1,'megacode.user.verify.description','Tu cuenta no ha sido verificada, por favor ingresa tu correo electrónico para enviar el correo de verificación.','Your account has not been verified, please enter your email to send the verification email.');
+INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (52,1,'megacode.authentication.verify','Verificar','Verify');
 --INSERT INTO megacode.label (id,app_id,code,label_es,label_en) VALUE (20,1,'megacode.','','');

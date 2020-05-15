@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        .body-megacode {
+            background-color: #282e38;
+            color: white;
+            font-size: 1.27vw;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        .container-form{
+            height: auto;
+            padding-bottom: 50px;
+        }
+        .container-img{
+            text-align: center;
+            width: auto !important;
+            height: auto !important;
+        }
+        .img-logo{
+            width: 20vw;
+            margin-top: 2vh;
+        }
+        .container-text-hello{
+            margin-top: 5vh;
+            margin-left: 10vw;
+            margin-right: 10vw;
+            text-align: left;
+            font-size: 1.6vw;
+        }
+        .container-text{
+            margin-top: 5vh;
+            margin-left: 10vw;
+            margin-right: 10vw;
+            margin-bottom: 5vh;
+            text-align: left;
+        }
+        .name-user-megacode {
+            font-weight: bold;
+        }
+        .container-button-confirm {
+            text-align: center;
+            margin-top: 5vh;
+        }
+        .btn {
+            font-size: 1em;
+            color: #dcdcdc;
+            display: inline-flex;
+            flex: 0 0 auto;
+            align-items: center;
+            min-height: 45px;
+            padding: 0 10px;
+            border-radius: 8px;
+            border: 1px solid #2c4c84;
+            background-color: #2c4c84;
+            vertical-align: center;
+        }
+        .text-btn{
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body class="body-megacode">
+<div class="container-form">
+    <div class="container-img">
+        <img class="img-logo" src="cid:logo"/>
+    </div>
+    <div class="container-text-hello">
+        Hi <label class="name-user-megacode" th:text="${name}">Name lastname</label>,
+        <br/>
+    </div>
+    <div class="container-text">
+        Thank you for registering, to be able to enter our platform please verify your account, for this, click on the following button to activate your account.
+    </div>
+    <div class="container-button-confirm">
+        <div class="btn">
+            <a th:href="${url}" style="color: white; text-decoration: none">
+                <div class="text-btn">
+                    Confirm you account
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="container-text">
+        This email would be active for 2 hours, if it expires, try to login and a new email will be forwarded.
+    </div>
+    <div class="container-text">
+        If button no work, <a th:href="${url}">click here</a>
+    </div>
+</div>
+</body>
+</html>

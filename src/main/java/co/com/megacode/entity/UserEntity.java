@@ -27,6 +27,9 @@ public class UserEntity extends BaseEntity {
     @Column(name = "email", length = 255, nullable = false, unique = true)
     private String email;
 
+    @Column(name = "verify", columnDefinition = "tinyint(1) default 0")
+    private boolean verify;
+
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     private CountryEntity country;
 
@@ -92,5 +95,13 @@ public class UserEntity extends BaseEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isVerify() {
+        return verify;
+    }
+
+    public void setVerify(boolean verify) {
+        this.verify = verify;
     }
 }

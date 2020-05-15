@@ -1,4 +1,4 @@
-package co.com.megacode.config;
+package co.com.megacode.config.jwt;
 
 import java.io.IOException;
 import java.io.Serializable;

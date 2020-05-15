@@ -1,4 +1,4 @@
-package co.com.megacode.config;
+package co.com.megacode.config.handler;
 
 import co.com.megacode.DTO.ApiError;
 import co.com.megacode.exception.MegacodeException;
