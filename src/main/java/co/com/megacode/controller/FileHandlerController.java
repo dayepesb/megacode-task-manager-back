@@ -13,8 +13,7 @@ import static co.com.megacode.constant.UrlName.URL_SAVE_IMG_GENERAL;
 
 @RestController
 @RequestMapping(URL_FILES)
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
-public class FileHandlerController {
+public class FileHandlerController extends BaseController {
 
     @Autowired
     private ImageService imageService;

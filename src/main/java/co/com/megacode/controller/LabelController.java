@@ -12,8 +12,7 @@ import static co.com.megacode.constant.ParamsName.PARAM_ID_APP;
 
 @RestController
 @RequestMapping(value = URL_LABELS)
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
-public class LabelController {
+public class LabelController extends BaseController {
 
     @Autowired
     private LabelService labelService;

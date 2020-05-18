@@ -12,8 +12,7 @@ import static co.com.megacode.constant.ParamsName.PARAM_ID_APP;
 
 @RestController
 @RequestMapping(value = URL_IMAGES)
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
-public class ImageController {
+public class ImageController extends BaseController {
 
     @Autowired
     ImageServiceImpl imageServiceImpl;
